@@ -14,6 +14,18 @@ exports.theme = {
         neutral_500: "#F2EFEF",
         neutral_600: "#FFFFFF",
     },
-    spacing: {},
-    fontSizes: {},
+    fontSizes: {
+        xsmall: "16px",
+        small: "18px",
+        base: "24px",
+        large: "32px",
+        xlarge: "40px",
+        display_small: "72px",
+        display_med: "216px",
+        display_large: "336px",
+    },
+    fontFamily: {
+        base: '"Inter", sans-serif',
+        code: '"Anonymous Pro", monospace',
+    },
 };
