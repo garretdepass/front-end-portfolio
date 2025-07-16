@@ -39,6 +39,14 @@ export const theme = {
     base: '"Inter", sans-serif',
     code: '"Anonymous Pro", monospace',
   },
+
+  spacing: {
+    small: "8px",
+    medium: "16px",
+    large: "24px",
+    wrapperSidePadding: "160px",
+    maxWidth: "1440px",
+  },
 };
 
 // export const theme = {
