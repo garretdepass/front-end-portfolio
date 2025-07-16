@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { theme } from "../styles/theme";
+import { theme } from "../../styles/theme";
 
 const ButtonInner = styled.button`
   border-radius: 8px;
@@ -12,6 +12,7 @@ const ButtonInner = styled.button`
   font-size: ${theme.fontSizes.base};
   font-weight: 700;
   line-height: 33px; /* 137.5% */
+  /* visibility: hidden; */
 `;
 
 type props = { text: string };

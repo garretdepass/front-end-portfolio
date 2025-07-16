@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef, ElementType, JSX } from "react";
+import React, { useEffect, useState, useRef, JSX } from "react";
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../styles/theme";
 import { useGSAP } from "@gsap/react";
+import MotionPathPlugin from "gsap/MotionPathPlugin";
 import gsap from "gsap";
-import Button from "../button";
+import BusButton from "../buttons/bus_button";
 
 const Wrapper = styled.section`
   height: 100vh;
@@ -33,10 +34,11 @@ const Typewriter = styled.h1`
   text-align: left;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-wrap: wrap;
   overflow-x: hidden;
   align-self: stretch;
+  height: calc(${theme.fontSizes.base} * 3.83);
 `;
 
 const ReadMore = styled.h1`
@@ -44,6 +46,10 @@ const ReadMore = styled.h1`
   font-size: ${theme.fontSizes.base};
   font-family: ${theme.fontFamily.base};
   text-align: left;
+  gap: 24px;
+  margin-bottom: 64px;
+  display: flex;
+  align-content: center;
 `;
 
 const cursorAnimation = keyframes`
@@ -71,12 +77,6 @@ const Cursor = styled.span`
 const Hero: React.FC = () => {
   const [displayText1, setDisplayText1] = useState<JSX.Element[]>([]);
   const hasRun = useRef(false);
-
-  function addCharacter(character: string, totalDelay: number): void {
-    setTimeout(() => {
-      setDisplayText1((prev) => [...prev, <div>{character}</div>]);
-    }, totalDelay);
-  }
 
   function updateWord(word: string, currentWordIndex: number): void {
     setDisplayText1((prev) => [
@@ -119,7 +119,8 @@ const Hero: React.FC = () => {
               });
             }, totalDelay);
           }
-          totalDelay += 100;
+          if (character === ",") totalDelay += 400;
+          totalDelay += 40 + Math.ceil(Math.random() * 100);
           console.log(currentWord);
         });
         currentLineCount++;
@@ -133,7 +134,7 @@ const Hero: React.FC = () => {
           }, totalDelay);
         }
       });
-    }, 3000);
+    }, 2500);
   }
 
   const greetingText: string[] = [
@@ -142,8 +143,6 @@ const Hero: React.FC = () => {
     "I’m a front-end engineer, and I want to work at your company.",
   ];
 
-  useGSAP(() => {});
-
   useEffect(() => {
     if (!hasRun.current) {
       typewriter(greetingText);
@@ -151,13 +150,37 @@ const Hero: React.FC = () => {
     }
   }, []);
 
+  const busRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.registerPlugin(MotionPathPlugin);
+    if (!busRef.current) return;
+
+    gsap.set(busRef.current, {
+      xPercent: -40,
+      yPercent: -700,
+    });
+    gsap.to(busRef.current, {
+      motionPath: {
+        path: "M0.5 1.00005C110 -6.33329 362.794 139.116 525 317.518C679.5 487.444 972.091 406.349 983.5 603.018C994 784.018 801.5 886.016 635.5 852.016C557.338 836.007 460.135 716.634 353 675.016C232.602 628.245 130.051 664.87 56.5 667.516",
+        autoRotate: 180,
+      },
+      duration: 10,
+      delay: 7,
+      autoAlpha: 1,
+    });
+  });
+
   return (
     <Wrapper>
       <TopSectionContainer>
         <Typewriter className="typewriter">{displayText1}</Typewriter>
-        <Button text="Want to chat?" />
+        <BusButton ref={busRef} text="Want to chat?" />
       </TopSectionContainer>
-      <ReadMore>Here's a little about why you might want to hire me.</ReadMore>
+      <ReadMore>
+        Here's a little about why you might want to hire me.
+        <img src="/downArrow.svg"></img>
+      </ReadMore>
     </Wrapper>
   );
 };
