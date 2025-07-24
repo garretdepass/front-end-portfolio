@@ -1,25 +1,37 @@
-import React from "react";
+import React, { RefObject } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
 const Wrapper = styled.section`
-  @media (min-width: 640px) {
-    padding: 0 ${theme.spacing.wrapperSidePadding};
+  @media only screen and (max-width: ${theme.breakpoints.xlarge}) {
+    padding: 0 80px;
   }
-  padding: 0 24px;
+  @media (max-width: ${theme.breakpoints.small}) {
+    padding: 0 24px;
+  }
+  padding: 0 160px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   justify-content: center;
   max-width: ${theme.spacing.maxWidth};
   margin: 0 auto;
 `;
 
-type props = { children: React.ReactNode };
+// type props = { children: React.ReactNode };
 
-const SectionWrapper: React.FC<props> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+// const SectionWrapper = React.forwardRef<HTMLDivElement, props>((props, ref) => (
+//   <Wrapper>{props.children}</Wrapper>
+// ));
+
+type Props = {
+  children?: React.ReactNode;
+  wrapperRef?: RefObject<HTMLDivElement | null>;
+};
+
+const SectionWrapper: React.FC<Props> = ({ children, wrapperRef }) => {
+  return <Wrapper ref={wrapperRef}>{children}</Wrapper>;
 };
 
 export default SectionWrapper;

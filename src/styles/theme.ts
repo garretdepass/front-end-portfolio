@@ -18,7 +18,8 @@ export const theme = {
   },
 
   fontSizes: {
-    xsmall: "16px",
+    xxsmall: "10px",
+    xsmall: "14px",
     // (0.66rem)
     small: "18px",
     // (0.75rem)
@@ -44,8 +45,14 @@ export const theme = {
     small: "8px",
     medium: "16px",
     large: "24px",
-    wrapperSidePadding: "160px",
     maxWidth: "1440px",
+  },
+
+  breakpoints: {
+    small: "540px",
+    medium: "728px",
+    large: "1024px",
+    xlarge: "1440px",
   },
 };
 

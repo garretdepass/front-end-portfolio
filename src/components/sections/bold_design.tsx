@@ -20,10 +20,26 @@ const BoldWrapper = styled.section`
   background-position: center;
 `;
 
+const Background = styled.div`
+  background-image: url("https://picsum.photos/1920/1080");
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+`;
+
 const FallbackText = styled.h1`
-  @media (max-width: 1780px) {
+  @media (max-width: ${theme.breakpoints.xlarge}) {
     font-size: 20vw;
     line-height: 18vw;
+  }
+  @media (max-width: ${theme.breakpoints.small}) {
+    font-size: 23vw;
+    line-height: 22vw;
   }
   font-size: ${theme.fontSizes.display_large};
   font-weight: 900;
@@ -50,10 +66,14 @@ function isFirefox(): boolean {
   );
 }
 
+function isMobile(): boolean {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
 const BoldDesign: React.FC = () => {
   const [canUseClipText, setCanUseClipText] = useState<boolean>(true);
   useEffect(() => {
-    setCanUseClipText(!isFirefox());
+    if (isFirefox() || isMobile()) setCanUseClipText(false);
   }, []);
   return (
     <SectionWrapper>
@@ -63,8 +83,6 @@ const BoldDesign: React.FC = () => {
         ) : (
           <FallbackText>I love bold design</FallbackText>
         )}
-        {/* <div style={{ backgroundColor: "red" }}>
-        </div> */}
       </BoldWrapper>
     </SectionWrapper>
   );

@@ -13,10 +13,11 @@ const HeroContent = styled.div`
   display: flex;
   align-self: stretch;
   flex-direction: column;
+  margin-bottom: 20vh;
 `;
 
 const TopSectionContainer = styled.div`
-  @media (max-width: 400px) {
+  @media (max-width: ${theme.breakpoints.small}) {
     padding-top: 20vh;
   }
   /* height: 60vh; */
@@ -69,13 +70,16 @@ const Cursor = styled.span`
   animation: ${cursorAnimation} 1s infinite;
 `;
 const ReadMore = styled.h1`
+  @media (max-width: ${theme.breakpoints.small}) {
+    padding-bottom: 8vh;
+  }
   color: ${theme.colors.neutral_0};
   font-size: ${theme.fontSizes.base};
   font-family: ${theme.fontFamily.base};
   text-align: left;
   gap: 24px;
   margin-top: 0;
-  padding-bottom: 64px;
+  padding-bottom: 5vh;
   display: flex;
   flex: 0;
   align-items: center;
@@ -99,6 +103,7 @@ const Hero: React.FC = () => {
       </div>,
     ]);
   }
+
   function typewriter(array: string[]) {
     updateWord("", 0);
     let currentLineCount = 0;
@@ -165,35 +170,11 @@ const Hero: React.FC = () => {
 
   const busRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    // Buss Button
-    // gsap.registerPlugin(MotionPathPlugin);
-    // if (!busRef.current || isSmallScreen()) return;
-    // gsap.set(busRef.current, {
-    //   xPercent: -40,
-    //   yPercent: -700,
-    // });
-    // gsap.to(busRef.current, {
-    //   motionPath: {
-    //     path: "M0.5 1.00005C110 -6.33329 362.794 139.116 525 317.518C679.5 487.444 972.091 406.349 983.5 603.018C994 784.018 801.5 886.016 635.5 852.016C557.338 836.007 460.135 716.634 353 675.016C232.602 628.245 130.051 664.87 56.5 667.516",
-    //     autoRotate: 180,
-    //   },
-    //   duration: 10,
-    //   delay: 7,
-    //   autoAlpha: 1,
-    // });
-  });
-
   return (
     <SectionWrapper>
       <HeroContent>
         <TopSectionContainer>
           <Typewriter className="typewriter">{displayText1}</Typewriter>
-          {/* {isSmallScreen() ? (
-          <Button text="Want to chat?"></Button>
-          ) : (
-            <BusButton ref={busRef} text="Want to chat?" />
-            )} */}
         </TopSectionContainer>
         <ReadMore>
           Here's a little about why you might want to hire me.
