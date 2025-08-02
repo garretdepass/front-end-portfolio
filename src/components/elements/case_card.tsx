@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
 const Card = styled.div`
+  @media screen and (max-width: ${theme.breakpoints.small}) {
+    padding: 24px;
+    border-radius: 24px;
+  }
   max-width: 656px;
   display: flex;
   flex-direction: column;
@@ -41,6 +45,9 @@ const Divider = styled.div`
   background-color: ${theme.colors.purple_400};
 `;
 const ExamplesContainer = styled.div`
+  @media screen and (max-width: ${theme.breakpoints.small}) {
+    flex-direction: column;
+  }
   display: flex;
   gap: 24px;
 `;
