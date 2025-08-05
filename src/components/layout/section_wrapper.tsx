@@ -9,29 +9,37 @@ const Wrapper = styled.section`
   @media (max-width: ${theme.breakpoints.small}) {
     padding: 0 24px;
   }
-  padding: 0 160px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-self: stretch;
   justify-content: center;
-  max-width: ${theme.spacing.maxWidth};
-  margin: 0 auto;
+  align-items: center;
 `;
 
-// type props = { children: React.ReactNode };
-
-// const SectionWrapper = React.forwardRef<HTMLDivElement, props>((props, ref) => (
-//   <Wrapper>{props.children}</Wrapper>
-// ));
+const MaxWidth = styled.div`
+  padding: 0 160px;
+  flex-direction: column;
+  width: 100%;
+  max-width: ${theme.spacing.maxWidth};
+  display: flex;
+  flex-direction: column;
+`;
 
 type Props = {
   children?: React.ReactNode;
   wrapperRef?: RefObject<HTMLDivElement | null>;
+  backgroundColor?: string;
 };
 
-const SectionWrapper: React.FC<Props> = ({ children, wrapperRef }) => {
-  return <Wrapper ref={wrapperRef}>{children}</Wrapper>;
+const SectionWrapper: React.FC<Props> = ({
+  children,
+  wrapperRef,
+  backgroundColor,
+}) => {
+  return (
+    <Wrapper style={{ backgroundColor: backgroundColor }} ref={wrapperRef}>
+      <MaxWidth>{children}</MaxWidth>
+    </Wrapper>
+  );
 };
 
 export default SectionWrapper;

@@ -7,6 +7,7 @@ import Experience from "./components/sections/experience";
 import { useRef } from "react";
 import EngineerPlus from "./components/sections/engineer_plus";
 import Code from "./components/sections/code";
+import Testimonials from "./components/sections/testimonials";
 
 function App() {
   const impactSectionRef = useRef<HTMLDivElement>(null);
@@ -18,6 +19,7 @@ function App() {
       <Experience impactSectionRef={impactSectionRef} />
       <EngineerPlus />
       <Code />
+      <Testimonials />
       <Footer />
     </div>
   );

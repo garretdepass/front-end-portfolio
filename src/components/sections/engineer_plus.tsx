@@ -11,15 +11,10 @@ gsap.registerPlugin(MorphSVGPlugin);
 const EngineerPlusWrapper = styled.section``;
 
 const ContentWrapper = styled.div`
-  @media screen and (max-width: ${theme.breakpoints.medium}) {
-    padding: 0px ${theme.spacing.large};
-  }
-
   @media screen and (max-width: ${theme.breakpoints.small}) {
     margin-top: 80px;
   }
-  padding-top: 20vh;
-  padding-bottom: 20vh;
+  padding: 20vh ${theme.spacing.large};
   display: flex;
   flex-direction: column;
   align-items: center;
