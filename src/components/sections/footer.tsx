@@ -9,10 +9,16 @@ const Wrapper = styled.footer`
 `;
 
 const ContentContainer = styled.div`
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+  }
   display: flex;
   flex-direction: row;
   max-width: 1440px;
   margin: 0 auto;
+  align-items: center;
 `;
 
 const ColumnLeft = styled.div`
@@ -22,16 +28,23 @@ const ColumnLeft = styled.div`
 `;
 
 const ColumnRight = styled.div`
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
   display: flex;
   flex-direction: column;
   text-align: right;
+  justify-content: center;
+  gap: 24px;
+  align-self: stretch;
 `;
 
 const H1 = styled.h1`
   font-family: ${theme.fontFamily.base};
   margin-block-start: 0;
   margin-block-end: 0;
-  font-weight: 700;
+  font-weight: 500;
 `;
 const Name = styled(H1)`
   color: ${theme.colors.purple_400};

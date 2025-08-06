@@ -6,12 +6,13 @@ import Link from "../primitives/link";
 
 const ContentWrapper = styled.div`
   @media only screen and (max-width: ${theme.breakpoints.small}) {
-    padding-top: 144px;
+    padding-top: 128px;
   }
+  padding-top: 144px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: 160px;
+  padding-bottom: 240px;
   gap: 80px;
   align-self: stretch;
 `;

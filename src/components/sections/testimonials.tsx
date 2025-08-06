@@ -2,8 +2,6 @@ import React from "react";
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
 import TestimonialCard from "../elements/testimonial_card";
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 
@@ -94,8 +92,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ deviceType }) => {
           showStatus={false}
           centerMode={false}
           centerSlidePercentage={isMobile ? 100 : 50}
-          // autoPlay={isMobile ? false : true}
-          // interval={9000}
+          showThumbs={false}
         >
           <TestimonialCard name="Chris de Jong" title="Product Leader">
             "Garret is a true multiplier. His contributions go far beyond his

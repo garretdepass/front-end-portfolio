@@ -50,6 +50,7 @@ const Text3 = styled.p`
 const ColorSpan = styled.span`
   background-color: ${theme.colors.purple_300};
   padding: 0 4px;
+  border-radius: 2px;
 `;
 
 const SectionTitleContainer = styled.div`
@@ -176,9 +177,6 @@ const EngineerPlus: React.FC = () => {
       function () {
         if (backgroundElements.current) {
           setBackgroundElementsHeight(
-            backgroundElements.current?.getBoundingClientRect().height
-          );
-          console.log(
             backgroundElements.current?.getBoundingClientRect().height
           );
         }

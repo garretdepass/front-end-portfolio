@@ -62,6 +62,7 @@ const HighlightSpan = styled.span`
   background-color: ${theme.colors.purple_300};
   font-weight: 600;
   padding: 0 4px;
+  border-radius: 2px;
 `;
 
 function getGridGap() {

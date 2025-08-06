@@ -19,6 +19,7 @@ const Text = styled.h1`
   /* display: flex;
   flex-direction: row; */
   gap: 3px;
+  height: 78px;
 `;
 
 const Period = styled.div`
@@ -28,18 +29,22 @@ const Period = styled.div`
   background-color: #e53673;
   display: inline-block;
   margin-left: 1px;
-  margin-right: 3px;
+  margin-right: 1px;
+`;
+
+const Expander = styled(Period)`
+  transform: translateX(-8px);
 `;
 
 const MyImpactPanel = styled.div`
   height: 110vh;
   width: max-content;
-  background-color: #e53673;
+  /* background-color: ${theme.colors.pink_300}; */
   position: fixed;
   z-index: 3;
   display: flex;
   justify-content: center;
-  margin-top: -53vh;
+  margin-top: -54vh;
   align-items: center;
   gap: 256px;
 `;
@@ -49,6 +54,11 @@ const ImpactDisplayText = styled.p`
   font-weight: 700;
   color: ${theme.colors.neutral_600};
   text-transform: uppercase;
+`;
+
+const ImpactDetailGroup = styled.div`
+  width: 80vw;
+  text-align: left;
 `;
 
 const ImpactExampleText = styled.p`
@@ -65,15 +75,28 @@ const ImpactExampleText = styled.p`
 
 const ImpactExampleLabel = styled.p`
   @media (max-width: ${theme.breakpoints.small}) {
-    max-width: 80vw;
     text-align: left;
   }
+  width: fit-content;
   font-family: ${theme.fontFamily.base};
-  font-size: ${theme.fontSizes.xsmall};
+  font-size: ${theme.fontSizes.small};
   font-weight: 700;
   color: ${theme.colors.neutral_600};
   margin-bottom: 24px;
 `;
+
+const ImpactSpan = styled.span`
+  background-color: ${theme.colors.neutral_600};
+  color: ${theme.colors.pink_300};
+  padding: 0px 8px;
+  border-radius: 2px;
+`;
+
+function getIsMobile(): boolean {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+const isMobile = getIsMobile();
 
 type ImpactProps = {
   impactSectionRef: RefObject<HTMLDivElement | null>;
@@ -112,48 +135,66 @@ const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
   }
 
   useGSAP(() => {
-    gsap.to(periodRef.current, {
+    gsap.set(myImpactPanelRef.current, {
+      xPercent: 100,
+    });
+
+    // pin section
+    gsap.to(sectionRef.current, {
       scrollTrigger: {
         trigger: periodRef.current,
         start: "center center",
-        end: `+=${1.2 * impactPanelBounding.width}`,
+        end: isMobile
+          ? `+=${1.7 * impactPanelBounding.width}`
+          : `+=${1.2 * impactPanelBounding.width}`,
         pin: sectionRef.current,
         pinSpacing: "margin",
-        // markers: true,
       },
     });
-    gsap.to(periodRef.current, {
+
+    // expand period
+    gsap.to(expanderRef.current, {
       scrollTrigger: {
         trigger: periodRef.current,
         start: "top 20%",
-        end: "+=600",
+        end: "+=800",
         scrub: 3,
       },
       scale: getPeriodScaleFactor(),
       ease: "power2.out",
     });
 
-    let tl = gsap.timeline({
+    // scroll impact panel
+    gsap.to(myImpactPanelRef.current, {
       scrollTrigger: {
         trigger: periodRef.current,
-        start: "bottom top",
-        end: `+=${impactPanelBounding.width}`,
-        scrub: 1,
+        start: "top 90%",
+        end: "+=9200",
+        scrub: 3,
       },
+      xPercent: -110,
     });
-    tl.fromTo(
-      myImpactPanelRef.current,
-      { xPercent: 100, duration: 8 },
+
+    // shrink period
+    gsap.fromTo(
+      expanderRef.current,
       {
-        xPercent: -110,
+        // left empty to preserve "from" state and allow shrink animation to occur.
+      },
+      {
+        scrollTrigger: {
+          trigger: periodRef.current,
+          start: isMobile ? "+=6900 10%" : "+=6300 10%",
+          end: "+=800",
+          scrub: 3,
+        },
+        scale: 1,
+        ease: "power2.out",
       }
-    ).to(periodRef.current, {
-      scale: 1,
-    });
+    );
   }, [impactPanelBounding]);
+
   return (
-    // <SectionWrapper wrapperRef={impactSectionRef}>
-    // {/* <SectionWrapper ref={wrapperRef}> */}
     <ImpactContent ref={sectionRef}>
       <Text>
         {scrollY < 4016
@@ -161,43 +202,45 @@ const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
           : "And that's what you're looking for"}
         <span>
           <Period ref={periodRef} />
+          <Expander ref={expanderRef} />
         </span>
         {scrollY > 4016 && " Right?"}
       </Text>
       <MyImpactPanel ref={myImpactPanelRef}>
         <ImpactDisplayText>And I'm all about impact:</ImpactDisplayText>
-        <div ref={impactDetailGroupRef}>
+        <ImpactDetailGroup ref={impactDetailGroupRef}>
           <ImpactExampleLabel>In previous roles, I...</ImpactExampleLabel>
           <ImpactExampleText>
-            Designed patient-to-provider communications platform that saved a
-            patient’s eye from cancer.
+            Designed patient-to-provider communications platform that{" "}
+            <ImpactSpan>saved a patient’s eye from cancer.</ImpactSpan>
           </ImpactExampleText>
           <ImpactExampleText>
-            Reduced development cycle time by implementing self-serve design
-            handoff processes.
+            <ImpactSpan>Reduced development cycle time</ImpactSpan> by
+            implementing self-serve design handoff processes.
           </ImpactExampleText>
           <ImpactExampleText>
-            Added accessibility compliance to web app, increasing adoption by 8%
+            Added accessibility compliance to web app,{" "}
+            <ImpactSpan>increasing adoption by 8%</ImpactSpan>
           </ImpactExampleText>
           <ImpactExampleText>
-            Shipped a medical app that’s now helping thousands with
-            fibromayalgia
+            Shipped a medical app that’s now{" "}
+            <ImpactSpan>helping thousands</ImpactSpan> with fibromayalgia
           </ImpactExampleText>
           <ImpactExampleText>
-            Shipped a business-critical EMR platform, saving the company
-            millions.
+            Shipped a business-critical EMR platform,{" "}
+            <ImpactSpan>saving the company millions.</ImpactSpan>
           </ImpactExampleText>
           <ImpactExampleText>
-            Reduced time to first cook (a critical metric for IoT startup) by
-            15%
+            Reduced time to first cook (a critical metric for IoT startup){" "}
+            <ImpactSpan>by 15%</ImpactSpan>
           </ImpactExampleText>
           <ImpactExampleText>
-            Increased revenue on key ecommerce pages by 20%
+            <ImpactSpan>Increased revenue</ImpactSpan> on key ecommerce pages by
+            20%
           </ImpactExampleText>
-        </div>
+        </ImpactDetailGroup>
       </MyImpactPanel>
     </ImpactContent>
-    // </SectionWrapper>
   );
 };
 

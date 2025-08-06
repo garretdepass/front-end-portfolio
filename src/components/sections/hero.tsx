@@ -2,10 +2,7 @@ import React, { useEffect, useState, useRef, JSX } from "react";
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../styles/theme";
 import { useGSAP } from "@gsap/react";
-import MotionPathPlugin from "gsap/MotionPathPlugin";
 import gsap from "gsap";
-import BusButton from "../buttons/bus_button";
-import Button from "../buttons/button";
 import SectionWrapper from "../layout/section_wrapper";
 
 const HeroContent = styled.div`
@@ -133,7 +130,7 @@ const Hero: React.FC = () => {
             }, totalDelay);
           }
           if (character === ",") totalDelay += 400;
-          totalDelay += 40 + Math.ceil(Math.random() * 100);
+          totalDelay += 20 + Math.ceil(Math.random() * 60);
         });
         currentLineCount++;
         totalDelay += 1000;
@@ -152,7 +149,8 @@ const Hero: React.FC = () => {
   const greetingText: string[] = [
     "Hi 👋\n\n",
     "My name is Garret, nice to meet you!\n\n",
-    "I’m a front-end engineer, and I want to work at your company.",
+    "I’m a front-end engineer, and I want to work at your company.\n\n",
+    "Here's a little about why you might want to hire me.",
   ];
 
   function isSmallScreen(): boolean {
@@ -168,18 +166,32 @@ const Hero: React.FC = () => {
     }
   }, []);
 
-  const busRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    gsap.set(arrowRef.current, {
+      yPercent: 100,
+      opacity: 0,
+    });
+    gsap.to(arrowRef.current, {
+      delay: 15.29,
+      opacity: 1,
+      duration: 0.01,
+    });
+    gsap.to(arrowRef.current, {
+      delay: 15.3,
+      ease: "elastic.out",
+      duration: 1,
+      yPercent: -250,
+    });
+  }, []);
 
+  const arrowRef = useRef<HTMLImageElement>(null);
   return (
     <SectionWrapper>
       <HeroContent>
         <TopSectionContainer>
           <Typewriter className="typewriter">{displayText1}</Typewriter>
         </TopSectionContainer>
-        <ReadMore>
-          Here's a little about why you might want to hire me.
-          <Arrow src="/assets/images/downArrow.svg"></Arrow>
-        </ReadMore>
+        <Arrow ref={arrowRef} src="/assets/images/downArrow.svg"></Arrow>
       </HeroContent>
     </SectionWrapper>
   );
