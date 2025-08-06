@@ -55,6 +55,7 @@ const Title = styled(H1)`
 `;
 
 const Email = styled.p`
+  font-family: ${theme.fontFamily.base};
   color: ${theme.colors.neutral_600};
   font-weight: 400;
   font-size: ${theme.fontSizes.small};
@@ -69,8 +70,8 @@ const Footer: React.FC = () => {
           <Title>Engineer+</Title>
           <Email>
             <Link
-              href="mailto@garretdepass@gmail.com"
-              newWindow={false}
+              href="mailto:garretdepass@gmail.com"
+              newWindow={true}
               $color={theme.colors.neutral_600}
             >
               garretdepass@gmail.com
