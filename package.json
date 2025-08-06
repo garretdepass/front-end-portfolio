@@ -44,6 +44,8 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.1.4"
+    "@types/node": "^24.2.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "typescript": "^5.9.2"
   }
 }
