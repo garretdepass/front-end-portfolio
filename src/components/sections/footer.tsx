@@ -1,10 +1,11 @@
 import react from "react";
 import styled from "styled-components";
-import { AnyComponent } from "styled-components/dist/types";
+import { theme } from "../../styles/theme";
+import Link from "../primitives/link";
 
 const Wrapper = styled.footer`
   padding: 72px 32px;
-  background: #f5f5f5;
+  background: ${theme.colors.purple_0};
 `;
 
 const ContentContainer = styled.div`
@@ -16,7 +17,6 @@ const ContentContainer = styled.div`
 
 const ColumnLeft = styled.div`
   font-size: 24px;
-  font-weight: 700;
   text-align: left;
   flex: 1;
 `;
@@ -27,32 +27,65 @@ const ColumnRight = styled.div`
   text-align: right;
 `;
 
+const H1 = styled.h1`
+  font-family: ${theme.fontFamily.base};
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-weight: 700;
+`;
+const Name = styled(H1)`
+  color: ${theme.colors.purple_400};
+`;
+
+const Title = styled(H1)`
+  color: ${theme.colors.purple_300};
+`;
+
+const Email = styled.p`
+  color: ${theme.colors.neutral_600};
+  font-weight: 400;
+  font-size: ${theme.fontSizes.small};
+`;
+
 const Footer: React.FC = () => {
   return (
     <Wrapper>
       <ContentContainer>
         <ColumnLeft>
-          <div>Garret DePass</div>
-          <div>Engineer+</div>
+          <Name>Garret DePass</Name>
+          <Title>Engineer+</Title>
+          <Email>
+            <Link
+              href="mailto@garretdepass@gmail.com"
+              newWindow={false}
+              $color={theme.colors.neutral_600}
+            >
+              garretdepass@gmail.com
+            </Link>
+          </Email>
         </ColumnLeft>
         <ColumnRight>
-          <a href="" target="_blank" rel="noopener noreferrer">
+          <Link
+            href="public/garretDePassResume.pdf"
+            newWindow={true}
+            $color={theme.colors.neutral_600}
+          >
             Resume
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://github.com/garretdepass"
-            target="_blank"
-            rel="noopener noreferrer"
+            newWindow={true}
+            $color={theme.colors.neutral_600}
           >
             Github
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://www.linkedin.com/in/garretdepass/"
-            target="_blank"
-            rel="noopener noreferrer"
+            newWindow={true}
+            $color={theme.colors.neutral_600}
           >
             LinkedIn
-          </a>
+          </Link>
         </ColumnRight>
       </ContentContainer>
     </Wrapper>

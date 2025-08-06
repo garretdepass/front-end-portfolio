@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
         </TopSectionContainer>
         <ReadMore>
           Here's a little about why you might want to hire me.
-          <Arrow src="/downArrow.svg"></Arrow>
+          <Arrow src="/assets/images/downArrow.svg"></Arrow>
         </ReadMore>
       </HeroContent>
     </SectionWrapper>

@@ -13,6 +13,7 @@ export const theme = {
 
     // Neutrals
     neutral_0: "#000000",
+    neutral_400: "#D7D7D7",
     neutral_500: "#F2EFEF",
     neutral_600: "#FFFFFF",
   },

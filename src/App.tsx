@@ -8,6 +8,7 @@ import { useRef } from "react";
 import EngineerPlus from "./components/sections/engineer_plus";
 import Code from "./components/sections/code";
 import Testimonials from "./components/sections/testimonials";
+import Contact from "./components/sections/contact";
 
 function App() {
   const impactSectionRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,7 @@ function App() {
       <EngineerPlus />
       <Code />
       <Testimonials />
+      <Contact />
       <Footer />
     </div>
   );

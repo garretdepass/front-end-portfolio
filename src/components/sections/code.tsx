@@ -29,7 +29,6 @@ const Text1 = styled.h1`
 const Text2 = styled.h2`
   font-size: ${theme.fontSizes.base};
   font-family: ${theme.fontFamily.code};
-  color: #569cd6;
   text-align: left;
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -93,7 +92,7 @@ const Code: React.FC = () => {
           <CaseStudy>
             <Thumbnail src="/assets/images/code/dice_roller_thumbnail.png" />
             <Link
-              $underlineColor="#569cd6"
+              $color="#569cd6"
               newWindow={true}
               href="https://github.com/garretdepass/deadlands-dice-roller"
             >
@@ -107,7 +106,7 @@ const Code: React.FC = () => {
           <CaseStudy>
             <Thumbnail src="/assets/images/code/portfolio_thumbnail.png" />
             <Link
-              $underlineColor="#569cd6"
+              $color="#569cd6"
               newWindow={true}
               href="https://github.com/garretdepass/front-end-portfolio"
             >
