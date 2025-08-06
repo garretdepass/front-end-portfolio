@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
               newWindow={true}
               $color={theme.colors.neutral_600}
             >
-              garretdepass@gmail.com
+              garretdepass@gmail.coms
             </Link>
           </Email>
         </ColumnLeft>
