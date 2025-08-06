@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import Link from "../primitives/link";
