@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
         </ColumnLeft>
         <ColumnRight>
           <Link
-            href="public/garretDePassResume.pdf"
+            href={`${process.env.PUBLIC_URL}/garretDePassResume.pdf`}
             newWindow={true}
             $color={theme.colors.neutral_600}
           >
