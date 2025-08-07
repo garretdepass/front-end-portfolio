@@ -191,7 +191,7 @@ const Hero: React.FC = () => {
         <TopSectionContainer>
           <Typewriter className="typewriter">{displayText1}</Typewriter>
         </TopSectionContainer>
-        <Arrow ref={arrowRef} src="/assets/images/downArrow.svg"></Arrow>
+        <Arrow ref={arrowRef} src={`${process.env.PUBLIC_URL}/assets/images/downArrow.svg`}></Arrow>
       </HeroContent>
     </SectionWrapper>
   );

@@ -293,58 +293,58 @@ const Experience: React.FC<ExperienceProps> = ({ impactSectionRef }) => {
         </TextContainer>
         <SkillsContainer ref={skillsContainerRef}>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/html.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/html.png`} alt="" />
           </SkillImageContainer>
           <Skill>Interface design</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/css.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/css.png`} alt="" />
           </SkillImageContainer>
           <Skill>Consulting</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/js.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/js.png`} alt="" />
           </SkillImageContainer>
           <Skill>Mentorship</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/ruby.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/ruby.png`} alt="" />
           </SkillImageContainer>
           <Skill>Vision and Strategy</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/python.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/python.png`} alt="" />
           </SkillImageContainer>
           <Skill>user research</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/typescript.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/typescript.png`} alt="" />
           </SkillImageContainer>
           <Skill>facilitation</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/react.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/react.png`} alt="" />
           </SkillImageContainer>
           <Skill>cross-functional pairing</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/rails.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/rails.png`} alt="" />
           </SkillImageContainer>
           <Skill>Interaction design</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/mongodb.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/mongodb.png`} alt="" />
           </SkillImageContainer>
           <Skill>Visual design</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/graphql.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/graphql.png`} alt="" />
           </SkillImageContainer>
           <Skill>Service design</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/git.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/git.png`} alt="" />
           </SkillImageContainer>
           <Skill>Design systems</Skill>
           <SkillImageContainer>
-            <SkillImage src="/assets/images/skills/wordpress.png" alt="" />
+            <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/wordpress.png`} alt="" />
           </SkillImageContainer>
           <Skill>User-centered design</Skill>
           {isMobile ? (
             ""
           ) : (
             <SkillImageContainer>
-              <SkillImage src="/assets/images/skills/figma.png" alt="" />
+              <SkillImage src={`${process.env.PUBLIC_URL}/assets/images/skills/figma.png`} alt="" />
             </SkillImageContainer>
           )}
         </SkillsContainer>

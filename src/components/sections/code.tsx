@@ -91,7 +91,7 @@ const Code: React.FC = () => {
 
         <CaseStudyContainer>
           <CaseStudy>
-            <Thumbnail src="/assets/images/code/dice_roller_thumbnail.png" />
+            <Thumbnail src={`${process.env.PUBLIC_URL}/assets/images/code/dice_roller_thumbnail.png`} />
             <Link
               $color="#569cd6"
               newWindow={true}
@@ -105,7 +105,7 @@ const Code: React.FC = () => {
             </Text3>
           </CaseStudy>
           <CaseStudy>
-            <Thumbnail src="/assets/images/code/portfolio_thumbnail.png" />
+            <Thumbnail src={`${process.env.PUBLIC_URL}/assets/images/code/portfolio_thumbnail.png`} />
             <Link
               $color="#569cd6"
               newWindow={true}

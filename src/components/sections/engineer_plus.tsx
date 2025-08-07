@@ -251,10 +251,10 @@ const EngineerPlus: React.FC = () => {
             practices, an <span style={{ fontWeight: 700 }}>Engineer+</span> is
             exactly what your team needs to move fast when things are uncertain.
           </LeftText1>
-          <MyPhoto src="/assets/images/engineer_plus/face_bg.png" />
+          <MyPhoto src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/face_bg.png`} />
           <Eybrows
             ref={eyebrows}
-            src="/assets/images/engineer_plus/eyebrows.png"
+            src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/eyebrows.png`}
           />
         </PhotoDescriptionContainer>
         <Text3>
