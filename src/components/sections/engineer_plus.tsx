@@ -274,13 +274,13 @@ const EngineerPlus: React.FC = () => {
         </Text3>
         <CardContainer ref={cardContainer}>
           <CaseCard
-            heading="Your team has defined the feature, but product design is held up with a competing priority."
+            heading="The team has been churning on a feature for weeks. Requirements keep changing, and the team is frustrated."
             traditionalEngineer={[
               "10 years in product design",
               "Experience as a PM",
               "User research experience",
             ]}
-            engineerPlus="First, leverage any user research and design system guidelines to build a rough version of the feature quickly and share with design for critique. Next, integrate feedback and focus on shipping quickly. The end result would balance performance, visual consistancy, accessibility, and tight scope."
+            engineerPlus="Return to goals — confirm what needles need to move for the business, what needs to change about the experience, and what needs to be improved in the code base. Scope ruthlessly, and build a prototype capable of accurately testing 1-2 assumptions."
           />
           <CaseCard
             heading="Velocity is extremely volatile, and the stakeholders are feeling antsy."
@@ -298,7 +298,7 @@ const EngineerPlus: React.FC = () => {
               "Spent years coaching designers at all levels",
               "Developed novel process workflows on multiple teams",
             ]}
-            engineerPlus="With a deep understanding of the design process and tools, I've already had 'hallway conversations' with design about how handoff should work. I actively pair with design and product to make sure misunderstandings are caught early, and the process improves over time."
+            engineerPlus="With a deep understanding of the design process and tools, I've already had 'hallway conversations' with design and engineering about how handoff should work. I introduce design/eng pairing sessions and design-to-code parity standards to reinforce better collaboration."
           />
         </CardContainer>
       </ContentWrapper>
