@@ -80,9 +80,9 @@ const MyPhoto = styled.img`
 
 const Eybrows = styled.img`
   @media screen and (max-width: ${theme.breakpoints.small}) {
-    height: 12px;
-    top: 95px;
-    left: -14px;
+    height: 19px;
+    top: 130px;
+    left: -19px;
   }
   height: 20px;
   position: relative;

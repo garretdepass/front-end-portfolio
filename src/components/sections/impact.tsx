@@ -26,14 +26,17 @@ const Period = styled.div`
   height: 6px;
   width: 6px;
   border-radius: 100%;
-  background-color: #e53673;
+  background-color: ${theme.colors.pink_300};
   display: inline-block;
   margin-left: 1px;
   margin-right: 1px;
 `;
 
-const Expander = styled(Period)`
-  transform: translateX(-8px);
+const Expander = styled.svg`
+  transform: translateX(-7px);
+  width: 6px;
+  height: 6px;
+  overflow: inherit;
 `;
 
 const MyImpactPanel = styled.div`
@@ -105,7 +108,7 @@ type ImpactProps = {
 const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
   // const sectionRef = useRef<HTMLDivElement>(null);
   const periodRef = useRef<HTMLDivElement>(null);
-  const expanderRef = useRef<HTMLDivElement>(null);
+  const expanderRef = useRef<SVGCircleElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const myImpactPanelRef = useRef<HTMLDivElement>(null);
   const impactDetailGroupRef = useRef<HTMLDivElement>(null);
@@ -160,7 +163,8 @@ const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
         end: "+=800",
         scrub: 3,
       },
-      scale: getPeriodScaleFactor(),
+      // scale: getPeriodScaleFactor(),
+      r: 5000,
       ease: "power2.out",
     });
 
@@ -188,7 +192,8 @@ const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
           end: "+=800",
           scrub: 3,
         },
-        scale: 1,
+        r: 3,
+        // scale: 1,
         ease: "power2.out",
       }
     );
@@ -202,7 +207,14 @@ const Impact: React.FC<ImpactProps> = ({ impactSectionRef }) => {
           : "And that's what you're looking for"}
         <span>
           <Period ref={periodRef} />
-          <Expander ref={expanderRef} />
+
+          <Expander
+            viewBox="0 0 6 6"
+            fill={theme.colors.pink_300}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle ref={expanderRef} cx="3" cy="3" r="3" />
+          </Expander>
         </span>
         {scrollY > 4016 && " Right?"}
       </Text>
