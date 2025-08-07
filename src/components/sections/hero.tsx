@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
   const greetingText: string[] = [
     "Hi 👋\n\n",
     "My name is Garret, nice to meet you!\n\n",
-    "I’m a front-end engineer, and I want to work at your company.\n\n",
+    "I’m a design engineer, and I want to work at your company.\n\n",
     "Here's a little about why you might want to hire me.",
   ];
 
@@ -191,7 +191,10 @@ const Hero: React.FC = () => {
         <TopSectionContainer>
           <Typewriter className="typewriter">{displayText1}</Typewriter>
         </TopSectionContainer>
-        <Arrow ref={arrowRef} src={`${process.env.PUBLIC_URL}/assets/images/downArrow.svg`}></Arrow>
+        <Arrow
+          ref={arrowRef}
+          src={`${process.env.PUBLIC_URL}/assets/images/downArrow.svg`}
+        ></Arrow>
       </HeroContent>
     </SectionWrapper>
   );
