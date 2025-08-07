@@ -2,7 +2,7 @@
   "name": "front-end-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://garretdepass.github.io/front-end-portfolio",
+  "homepage": "http://garretdepass.github.io/front-end-portfolio",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",

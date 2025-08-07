@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
       <ContentContainer>
         <ColumnLeft>
           <Name>Garret DePass</Name>
-          <Title>Engineer+</Title>
+          <Title>Design Engineer</Title>
           <Email>
             <Link
               href="mailto:garretdepass@gmail.com"

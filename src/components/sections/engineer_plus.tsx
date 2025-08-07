@@ -44,7 +44,7 @@ const Text3 = styled.p`
   font-weight: 700;
   margin-block-start: 0em;
   margin-block-end: 0em;
-  max-width: 500px;
+  max-width: 400px;
 `;
 
 const ColorSpan = styled.span`
@@ -71,7 +71,7 @@ const PhotoDescriptionContainer = styled.div`
 
 const MyPhoto = styled.img`
   @media screen and (max-width: ${theme.breakpoints.small}) {
-    height: 160px;
+    height: 240px;
   }
   height: 256px;
   aspect-ratio: 1;
@@ -239,43 +239,66 @@ const EngineerPlus: React.FC = () => {
       });
   });
   return (
+    // consider a rewrite:
+    // scenario stays
+    // replace traditional engineer with "relavent skills"
+    // replace Engineer+ with "How I'd handle it"
+    // May need to change Engineer+ branding. Might not be a bad thing
+    // considering I could use this for Design Engineer roles too.
+    // Would also need to change title in footer
+    // Also, make my picture bigger on mobile.
+
     <EngineerPlusWrapper ref={engineerPlusSection}>
       <ContentWrapper>
         <SectionTitleContainer>
-          <Text1>Think of me as an</Text1>
-          <Text2>Engineer+</Text2>
+          <Text1>What you need is a</Text1>
+          <Text2>Design Engineer</Text2>
         </SectionTitleContainer>
         <PhotoDescriptionContainer>
           <LeftText1>
-            With more industry experience, cross-training, and empathy for other
-            practices, an <span style={{ fontWeight: 700 }}>Engineer+</span> is
-            exactly what your team needs to move fast when things are uncertain.
+            With a decade of industry experience, cross-training, and empathy
+            for other practices, my skill set is exactly what your team needs to
+            move fast when things are uncertain.
           </LeftText1>
-          <MyPhoto src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/face_bg.png`} />
+          <MyPhoto
+            src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/face_bg.png`}
+          />
           <Eybrows
             ref={eyebrows}
             src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/eyebrows.png`}
           />
         </PhotoDescriptionContainer>
         <Text3>
-          What will your <ColorSpan>next</ColorSpan> engineering hire do when
-          things get tricky?
+          What will your <ColorSpan>next hire</ColorSpan> do when things get
+          tricky?
         </Text3>
         <CardContainer ref={cardContainer}>
           <CaseCard
-            heading="Your team has defined the feature, but design is held up with a competing priority."
-            traditionalEngineer="No design experience, so they may be fully blocked. They might ship something, but it probably won’t look consistent with the rest of the product."
-            engineerPlus="Takes into account any user research that’s been done. Leverages the design system (even if it’s just in figma). Builds a feature that looks good and performs well."
+            heading="Your team has defined the feature, but product design is held up with a competing priority."
+            traditionalEngineer={[
+              "10 years in product design",
+              "Experience as a PM",
+              "User research experience",
+            ]}
+            engineerPlus="First, leverage any user research and design system guidelines to build a rough version of the feature quickly and share with design for critique. Next, integrate feedback and focus on shipping quickly. The end result would balance performance, visual consistancy, accessibility, and tight scope."
           />
           <CaseCard
             heading="Velocity is extremely volatile, and the stakeholders are feeling antsy."
-            traditionalEngineer="No PM experience, so they feel frustrated and don’t know why. They wonder why stakeholders keep hassling them, when they’re doing the best they can."
-            engineerPlus="Seeing the warning signs, he has already proposed changes to the estimation process, and begun investigating other sources of toil. Together, he and the team run an experiment and update stakeholders."
+            traditionalEngineer={[
+              "Experience coaching engineering teams",
+              "Worked as a VP-level stakeholder",
+              "Managed a portfolio of teams",
+            ]}
+            engineerPlus="Seeing the warning signs, I've likely already proposed changes to the estimation process, and begun investigating other sources of toil. Together, the team and I run an experiment and measure velocity week over week. We involve stakeholders in active conversation and updates."
           />
           <CaseCard
             heading="Design and engineering keep talking past each other. It’s slowing everything down."
-            traditionalEngineer="No consulting experience, so they make assumptions about what design intended in the design file. They build the feature, mark it for review, and move onto the next task."
-            engineerPlus="Has a deep understanding of the design process and tools. Has already had discussions with design about how handoff should work. Actively pairs with design and product to make sure misunderstandings are caught early."
+            traditionalEngineer={[
+              "Extensive consulting experience",
+              "Spent years coaching designers at all levels",
+              "Developed novel process workflows on multiple teams",
+            ]}
+            engineerPlus="With a deep understanding of the design process and tools, I've already had 'hallway conversations' with design about how handoff should work. I actively pair with design and product to make sure misunderstandings are caught early, and the process improves over time."
           />
         </CardContainer>
       </ContentWrapper>

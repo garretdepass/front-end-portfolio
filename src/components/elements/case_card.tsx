@@ -38,6 +38,9 @@ const BodyText = styled.p`
   margin-block-end: 0em;
   text-align: left;
   line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const Divider = styled.div`
@@ -62,28 +65,38 @@ const EngineerContainer = styled.div`
   gap: 16px;
 `;
 const EngineerPlusContainer = styled(EngineerContainer)`
+  /* background-color: ${theme.colors.purple_500}; */
+  /* padding: 16px; */
+`;
+
+const Skill = styled.div`
+  padding: 3px 5px;
   background-color: ${theme.colors.purple_500};
-  padding: 16px;
+  color: #4608b0;
+  border-radius: 2px;
 `;
 
 type props = {
   heading: string;
-  traditionalEngineer: string;
+  traditionalEngineer: string[];
   engineerPlus: string;
 };
 
 const CaseCard: React.FC<props> = (props) => {
+  const list = props.traditionalEngineer.map((prop) => {
+    return <Skill>{prop}</Skill>;
+  });
   return (
     <Card>
       <HeadingText>{props.heading}</HeadingText>
       <Divider />
       <ExamplesContainer>
         <EngineerContainer>
-          <LabelText>Traditional Engineer</LabelText>
-          <BodyText>{props.traditionalEngineer}</BodyText>
+          <LabelText>My relevant skills</LabelText>
+          <BodyText>{list}</BodyText>
         </EngineerContainer>
         <EngineerPlusContainer>
-          <LabelText>Engineer+</LabelText>
+          <LabelText>My approach</LabelText>
           <BodyText>{props.engineerPlus}</BodyText>
         </EngineerPlusContainer>
       </ExamplesContainer>
