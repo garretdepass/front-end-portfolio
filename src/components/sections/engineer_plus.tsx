@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import CaseCard from "../elements/case_card";
+import ComingSoonModal from "../elements/coming_soon_modal";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
@@ -14,11 +15,12 @@ const ContentWrapper = styled.div`
   @media screen and (max-width: ${theme.breakpoints.small}) {
     margin-top: 80px;
   }
-  padding: 20vh ${theme.spacing.large};
+  padding: 20vh 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10vh;
+  text-align: center;
 `;
 
 const Text1 = styled.p`
@@ -33,6 +35,9 @@ const LeftText1 = styled(Text1)`
 `;
 
 const Text2 = styled.p`
+  @media screen and (max-width: ${theme.breakpoints.small}) {
+    max-width: 344px;
+  }
   font-size: ${theme.fontSizes.display_small};
   font-weight: 700;
   margin-block-start: 0em;
@@ -56,22 +61,24 @@ const ColorSpan = styled.span`
 const SectionTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 ${theme.spacing.large};
 `;
 
 const PhotoDescriptionContainer = styled.div`
   @media screen and (max-width: ${theme.breakpoints.small}) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 24px;
     margin-bottom: 64px;
   }
   display: flex;
-  max-width: 700px;
+  max-width: 1000px;
   align-items: center;
+  padding: 0 ${theme.spacing.large};
 `;
 
 const MyPhoto = styled.img`
   @media screen and (max-width: ${theme.breakpoints.small}) {
-    height: 240px;
+    height: 300px;
   }
   height: 256px;
   aspect-ratio: 1;
@@ -80,9 +87,9 @@ const MyPhoto = styled.img`
 
 const Eybrows = styled.img`
   @media screen and (max-width: ${theme.breakpoints.small}) {
-    height: 19px;
-    top: 130px;
-    left: -19px;
+    height: 24px;
+    top: -215px;
+    left: -24px;
   }
   height: 20px;
   position: relative;
@@ -97,6 +104,7 @@ const BackgroundElements = styled.div`
   align-self: stretch;
   position: relative;
   height: 0px;
+  top: -200px;
 `;
 const CurvesContainer = styled.div`
   white-space: nowrap;
@@ -107,8 +115,13 @@ const CurvesContainer = styled.div`
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  max-width: 1000px;
   gap: 10vh;
+  justify-content: center;
+  align-self: stretch;
+  margin: 0 auto;
 `;
 
 const CurveTemplate = styled.svg`
@@ -120,6 +133,9 @@ const CurveTemplate = styled.svg`
   margin-top: auto;
 `;
 const CurveFront = styled(CurveTemplate)`
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    top: 600px;
+  }
   @media only screen and (min-width: ${theme.breakpoints.xlarge}) {
     left: -200vw;
   }
@@ -127,72 +143,47 @@ const CurveFront = styled(CurveTemplate)`
   position: relative;
 `;
 const CurveMiddle = styled(CurveTemplate)`
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    top: 400px;
+  }
   @media only screen and (min-width: ${theme.breakpoints.xlarge}) {
     left: -100vw;
   }
   left: -1440px;
   position: relative;
 `;
-const CurveBack = styled(CurveTemplate)``;
+const CurveBack = styled(CurveTemplate)`
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    position: relative;
+    top: 200px;
+  }
+`;
+
 const GradientBG = styled.div`
-  background: linear-gradient(180deg, #6917b4 10%, #1f1f1f 80%);
-  /* height: 100vh; */
+  @media only screen and (max-width: ${theme.breakpoints.small}) {
+    top: 600px;
+  }
+  position: relative;
+  background-color: #5627c9;
+  height: 2000px;
   z-index: -99;
   align-self: stretch;
   margin-top: -6px;
+  display: block;
 `;
 
 const EngineerPlus: React.FC = () => {
-  // const [currentWindowWidth, setCurrentWindowWidth] = useState(0);
-  const [engineerPlusHeight, setEngineerPlusHeight] = useState(0);
   const engineerPlusSection = useRef<HTMLDivElement>(null);
   const eyebrows = useRef<HTMLImageElement>(null);
   const cardContainer = useRef<HTMLDivElement>(null);
-  const backgroundElements = useRef<SVGSVGElement>(null);
-  const [backgroundElementsHeight, setBackgroundElementsHeight] = useState(0);
-  const [cardContainerPositioning, setCardContainerPositioning] = useState({
-    height: 0,
-    y: 0,
-  });
-  useEffect(() => {
-    if (engineerPlusSection.current) {
-      setEngineerPlusHeight(
-        engineerPlusSection.current?.getBoundingClientRect().height
-      );
-    }
-    if (cardContainer.current) {
-      setCardContainerPositioning({
-        height: cardContainer.current?.getBoundingClientRect().height,
-        y: cardContainer.current?.getBoundingClientRect().y,
-      });
-    }
+  const backgroundElements = useRef<HTMLDivElement>(null);
+  const curvesContainer = useRef<HTMLDivElement>(null);
+  const bgGradient = useRef<HTMLSpanElement>(null);
+  const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
 
-    if (backgroundElements.current) {
-      setBackgroundElementsHeight(
-        backgroundElements.current?.getBoundingClientRect().height
-      );
-    }
-    window.addEventListener(
-      "resize",
-      function () {
-        if (backgroundElements.current) {
-          setBackgroundElementsHeight(
-            backgroundElements.current?.getBoundingClientRect().height
-          );
-        }
-      },
-      true
-    );
-  }, []);
-
-  // window.onresize = function () {
-  //   if (backgroundElements.current) {
-  //     setBackgroundElementsHeight(
-  //       backgroundElements.current?.getBoundingClientRect().height
-  //     );
-  //     console.log(backgroundElements.current?.getBoundingClientRect().height);
-  //   }
-  // };
+  const handleComingSoonClick = () => {
+    setIsComingSoonModalOpen(!isComingSoonModalOpen);
+  };
 
   useGSAP(() => {
     gsap.to("#curve_back_start", {
@@ -239,27 +230,13 @@ const EngineerPlus: React.FC = () => {
       });
   });
   return (
-    // consider a rewrite:
-    // scenario stays
-    // replace traditional engineer with "relavent skills"
-    // replace Engineer+ with "How I'd handle it"
-    // May need to change Engineer+ branding. Might not be a bad thing
-    // considering I could use this for Design Engineer roles too.
-    // Would also need to change title in footer
-    // Also, make my picture bigger on mobile.
-
     <EngineerPlusWrapper ref={engineerPlusSection}>
       <ContentWrapper>
         <SectionTitleContainer>
-          <Text1>What you need is a</Text1>
-          <Text2>Design Engineer</Text2>
+          <Text1>Yeah, I get it.</Text1>
+          <Text2>I'm here to help</Text2>
         </SectionTitleContainer>
         <PhotoDescriptionContainer>
-          <LeftText1>
-            With a decade of industry experience, cross-training, and empathy
-            for other practices, my skill set is exactly what your team needs to
-            move fast when things are uncertain.
-          </LeftText1>
           <MyPhoto
             src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/face_bg.png`}
           />
@@ -267,169 +244,172 @@ const EngineerPlus: React.FC = () => {
             ref={eyebrows}
             src={`${process.env.PUBLIC_URL}/assets/images/engineer_plus/eyebrows.png`}
           />
+          <LeftText1>
+            I have a decade of experience building digital products across
+            dozens of teams, companies, and industries. Need crunchy interaction
+            design for complicated workflows? What about a polished landing page
+            that speaks to deep user needs and converts like a dream? Mobile?
+            Web? User research? Design systems? Design + code?
+            <br />
+            <br />
+            I’ve got you covered.
+          </LeftText1>
         </PhotoDescriptionContainer>
-        <Text3>
-          What will your <ColorSpan>next hire</ColorSpan> do when things get
-          tricky?
-        </Text3>
+        <Text3>Take a look at some of my recent work.</Text3>
+        <BackgroundElements ref={backgroundElements} id="backgroundElements">
+          <CurvesContainer ref={curvesContainer} id="curvesContainer">
+            <CurveBack
+              viewBox="0 0 1280 811"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1280.01 370.004C1280.01 370.004 1149.93 403.332 1008 353.5C815.456 285.9 549.318 112.016 376.5 89.4987C112.5 55.1007 0.00123347 0.00331777 0.00123347 0.00331777L4.76679e-05 811.002L1280 811.003L1280.01 370.004Z"
+                fill="url(#curve_back_fill)"
+                id="curve_back_start"
+              />
+              <path
+                d="M1280.01 370.004C1280.01 370.004 1139.94 356.336 998.005 306.504C805.461 238.904 554.821 158.016 382.003 135.498C118.002 101.1 0.00123347 0.00331777 0.00123347 0.00331777L6.44824e-06 811.003L1280 811.003L1280.01 370.004Z"
+                fill="transparent"
+                id="curve_back_end"
+              />
+
+              <defs>
+                <linearGradient
+                  id="curve_back_fill"
+                  x1="868.826"
+                  y1="47.6712"
+                  x2="681.78"
+                  y2="857.239"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#8468FF" />
+                  <stop offset="1" stop-color="#EFEAFF" />
+                </linearGradient>
+              </defs>
+            </CurveBack>
+            <CurveMiddle
+              viewBox="0 0 1280 621"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M-0.00027114 0.495917C-0.00027114 0.495917 161.391 197.326 362.5 184.5C566.151 171.511 775.947 307.239 948 335C1199 375.5 1280 292.452 1280 292.452L1280 620.998L1.75944e-06 620.999L-0.00027114 0.495917Z"
+                fill="url(#curve_middle_fill)"
+                id="curve_middle_start"
+              />
+              <path
+                d="M4.53178e-05 0.497521C4.53178e-05 0.497521 168.392 105.823 369.5 92.9961C573.151 80.0074 742.188 165.424 898 243.498C1124.5 356.992 1280 292.453 1280 292.453L1280 621L0.0003165 621L4.53178e-05 0.497521Z"
+                fill="transparent"
+                id="curve_middle_end"
+              />
+              <defs>
+                <linearGradient
+                  id="curve_middle_fill"
+                  x1="512.052"
+                  y1="212.079"
+                  x2="325.006"
+                  y2="1021.65"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#785BF7" />
+                  <stop offset="1" stop-color="#8267fa" />
+                </linearGradient>
+              </defs>
+            </CurveMiddle>
+            <CurveFront
+              viewBox={`0 0 1280 428`}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 26.9033C0 26.9033 114.5 -22.2995 259.5 12.3747C496.692 69.0951 546 331.477 903.5 234.483C1110.73 178.258 1280 337.569 1280 337.569V428H0V26.9033Z"
+                fill="url(#curve_front_fill)"
+                id="curve_front_start"
+              />
+              <path
+                d="M0 0C0 0 52 73 197 110C434.192 170.525 461 411 818.5 307.5C1025.73 247.504 1280 417 1280 417V428H0V0Z"
+                fill="transparent"
+                id="curve_front_end"
+              />
+
+              <defs>
+                <linearGradient
+                  id="curve_front_fill"
+                  x1="0"
+                  y1="0%"
+                  x2="0"
+                  y2="200%"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0.045473" stop-color="#6F2DFC" />
+                  <stop offset="0.35558" stop-color="#5627c9" />
+                  {/* <stop offset="1" stop-color="#1C0021" /> */}
+                </linearGradient>
+              </defs>
+            </CurveFront>
+          </CurvesContainer>
+          <GradientBG id="gradientBG">
+            <span
+              ref={bgGradient}
+              style={{
+                // controls the height of the gradient block below animated curves
+                height: "2000px",
+                display: "block",
+              }}
+            />
+          </GradientBG>
+        </BackgroundElements>
         <CardContainer ref={cardContainer}>
           <CaseCard
-            heading="The team has been churning on a feature for weeks. Requirements keep changing, and the team is frustrated."
-            traditionalEngineer={[
-              "10 years in product design",
-              "Experience as a PM",
-              "User research experience",
-            ]}
-            engineerPlus="Return to goals — confirm what needles need to move for the business, what needs to change about the experience, and what needs to be improved in the code base. Scope ruthlessly, and build a prototype capable of accurately testing 1-2 assumptions."
+            title="Location and ID"
+            imageSrc="assets/images/code/location_identity_thumbnail.png"
+            tags={["Interaction design", "Responsive", "Web app"]}
+            description="Added location and identity verification for an asynchronous, remote medical platform, protecting providers licences and elevating quality of care."
+            linkText="View annotated Figma file"
+            linkURL="https://www.figma.com/design/8T9NA832SUheeNi2ho0In3/Location-and-Identity---2025?node-id=19-21243&t=J7TZMQixb4WwJaZL-11"
+            comingSoon={false}
+            openModal={handleComingSoonClick}
+            newWindow={true}
           />
           <CaseCard
-            heading="Velocity is extremely volatile, and the stakeholders are feeling antsy."
-            traditionalEngineer={[
-              "Experience coaching engineering teams",
-              "Worked as a VP-level stakeholder",
-              "Managed a portfolio of teams",
-            ]}
-            engineerPlus="Seeing the warning signs, I've likely already proposed changes to the estimation process, and begun investigating other sources of toil. Together, the team and I run an experiment and measure velocity week over week. We involve stakeholders in active conversation and updates."
+            title="Patient self-routing"
+            imageSrc="assets/images/code/patient_self_routing_thumbnail.png"
+            tags={["Mobile", "Web app", "Service design"]}
+            description="Updated medical app core chat experience to improve discoverability for patients and reduce the provider-side toil of manually routing messages."
+            linkText="View case study"
+            linkURL=""
+            comingSoon={true}
+            openModal={handleComingSoonClick}
+            newWindow={false}
           />
           <CaseCard
-            heading="Design and engineering keep talking past each other. It’s slowing everything down."
-            traditionalEngineer={[
-              "Extensive consulting experience",
-              "Spent years coaching designers at all levels",
-              "Developed novel process workflows on multiple teams",
-            ]}
-            engineerPlus="With a deep understanding of the design process and tools, I've already had 'hallway conversations' with design and engineering about how handoff should work. I introduce design/eng pairing sessions and design-to-code parity standards to reinforce better collaboration."
+            title="Item Findability"
+            imageSrc="assets/images/code/item_findability_thumbnail.png"
+            tags={["Mobile", "App modernization", "Service design"]}
+            description="Modernized retail tech stack while building employee trust in data by increasing inventory tracking robustness."
+            linkText="View case study"
+            linkURL=""
+            comingSoon={true}
+            openModal={handleComingSoonClick}
+            newWindow={false}
+          />
+          <CaseCard
+            title="Tempo mobile app"
+            imageSrc="assets/images/code/tempo_thumbnail.png"
+            tags={["Visual design", "Mobile", "Research & Testing"]}
+            description="Designed a digital therapeutic app currently treating fibromayalgia by prescription in large patient population"
+            linkText="View case study"
+            linkURL=""
+            comingSoon={true}
+            openModal={handleComingSoonClick}
+            newWindow={false}
           />
         </CardContainer>
+        {isComingSoonModalOpen && (
+          <ComingSoonModal
+            isOpen={isComingSoonModalOpen}
+            onClose={handleComingSoonClick}
+          />
+        )}
       </ContentWrapper>
-      <BackgroundElements style={{ top: `${-engineerPlusHeight * 0.7}px` }}>
-        <CurvesContainer>
-          <CurveBack
-            ref={backgroundElements}
-            viewBox="0 0 1280 811"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1280.01 370.004C1280.01 370.004 1149.93 403.332 1008 353.5C815.456 285.9 549.318 112.016 376.5 89.4987C112.5 55.1007 0.00123347 0.00331777 0.00123347 0.00331777L4.76679e-05 811.002L1280 811.003L1280.01 370.004Z"
-              fill="url(#curve_back_fill)"
-              id="curve_back_start"
-            />
-            <path
-              d="M1280.01 370.004C1280.01 370.004 1139.94 356.336 998.005 306.504C805.461 238.904 554.821 158.016 382.003 135.498C118.002 101.1 0.00123347 0.00331777 0.00123347 0.00331777L6.44824e-06 811.003L1280 811.003L1280.01 370.004Z"
-              fill="transparent"
-              id="curve_back_end"
-            />
-
-            <defs>
-              <linearGradient
-                id="curve_back_fill"
-                x1="868.826"
-                y1="47.6712"
-                x2="681.78"
-                y2="857.239"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#8468FF" />
-                <stop offset="1" stop-color="#EFEAFF" />
-              </linearGradient>
-            </defs>
-          </CurveBack>
-          <CurveMiddle
-            viewBox="0 0 1280 621"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M-0.00027114 0.495917C-0.00027114 0.495917 161.391 197.326 362.5 184.5C566.151 171.511 775.947 307.239 948 335C1199 375.5 1280 292.452 1280 292.452L1280 620.998L1.75944e-06 620.999L-0.00027114 0.495917Z"
-              fill="url(#curve_middle_fill)"
-              id="curve_middle_start"
-            />
-            <path
-              d="M4.53178e-05 0.497521C4.53178e-05 0.497521 168.392 105.823 369.5 92.9961C573.151 80.0074 742.188 165.424 898 243.498C1124.5 356.992 1280 292.453 1280 292.453L1280 621L0.0003165 621L4.53178e-05 0.497521Z"
-              fill="transparent"
-              id="curve_middle_end"
-            />
-            <defs>
-              <linearGradient
-                id="curve_middle_fill"
-                x1="512.052"
-                y1="212.079"
-                x2="325.006"
-                y2="1021.65"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#785BF7" />
-                <stop offset="1" stop-color="#8267fa" />
-              </linearGradient>
-            </defs>
-          </CurveMiddle>
-          <CurveFront
-            viewBox={`0 0 1280 428`}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 26.9033C0 26.9033 114.5 -22.2995 259.5 12.3747C496.692 69.0951 546 331.477 903.5 234.483C1110.73 178.258 1280 337.569 1280 337.569V428H0V26.9033Z"
-              fill="url(#curve_front_fill)"
-              id="curve_front_start"
-            />
-            <path
-              d="M0 0C0 0 52 73 197 110C434.192 170.525 461 411 818.5 307.5C1025.73 247.504 1280 417 1280 417V428H0V0Z"
-              fill="transparent"
-              id="curve_front_end"
-            />
-
-            <defs>
-              <linearGradient
-                id="curve_front_fill"
-                x1="637.595"
-                y1="-100.545"
-                x2="640.146"
-                y2="1176.31"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0.145473" stop-color="#6F2DFC" />
-                <stop offset="0.65558" stop-color="#620373" />
-                <stop offset="1" stop-color="#1C0021" />
-              </linearGradient>
-            </defs>
-          </CurveFront>
-        </CurvesContainer>
-        <GradientBG
-          // style={{
-          //   height: `${
-          //     window.innerWidth > 1440
-          //       ? "30vw"
-          //       : `${
-          //           cardContainerPositioning.height - backgroundElementsHeight
-          //         }px`
-          //   }`,
-          // }}
-          style={{
-            height: `${
-              cardContainerPositioning.height - backgroundElementsHeight + 520
-            }px`,
-          }}
-        >
-          <span
-            // style={{
-            //   height: `${
-            //     window.innerWidth > 1440
-            //       ? "30vw"
-            //       : `${
-            //           cardContainerPositioning.height - backgroundElementsHeight
-            //         }px`
-            //   }`,
-            //   display: "block",
-            // }}
-            style={{
-              height: `${
-                cardContainerPositioning.height - backgroundElementsHeight + 520
-              }px`,
-              display: "block",
-              color: "red",
-            }}
-          ></span>
-        </GradientBG>
-      </BackgroundElements>
     </EngineerPlusWrapper>
   );
 };

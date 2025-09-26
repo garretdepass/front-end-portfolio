@@ -9,6 +9,7 @@ import EngineerPlus from "./components/sections/engineer_plus";
 import Code from "./components/sections/code";
 import Testimonials from "./components/sections/testimonials";
 import Contact from "./components/sections/contact";
+import Hiring from "./components/sections/hiring";
 
 function App() {
   const impactSectionRef = useRef<HTMLDivElement>(null);
@@ -17,9 +18,10 @@ function App() {
       <Hero />
       <BoldDesign />
       <Impact impactSectionRef={impactSectionRef} />
-      <Experience impactSectionRef={impactSectionRef} />
+      <Hiring />
+      {/* <Experience impactSectionRef={impactSectionRef} /> */}
       <EngineerPlus />
-      <Code />
+      {/* <Code /> */}
       <Testimonials />
       <Contact />
       <Footer />

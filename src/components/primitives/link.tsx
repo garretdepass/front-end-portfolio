@@ -16,6 +16,7 @@ type Props = {
   children: React.ReactNode;
   href: string;
   newWindow?: boolean;
+  onClick?: () => void;
 };
 
 /**
@@ -31,12 +32,14 @@ const Link: React.FC<Props> = ({
   href,
   newWindow = false,
   $color,
+  onClick,
 }) => {
   return (
     <A
       href={href}
       target={newWindow ? "_blank" : "_self"}
       $color={$color ? $color : theme.colors.neutral_0}
+      onClick={onClick && onClick}
     >
       {children}
     </A>

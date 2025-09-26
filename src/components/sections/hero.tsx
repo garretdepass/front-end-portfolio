@@ -149,8 +149,8 @@ const Hero: React.FC = () => {
   const greetingText: string[] = [
     "Hi 👋\n\n",
     "My name is Garret, nice to meet you!\n\n",
-    "I’m a design engineer, and I want to work at your company.\n\n",
-    "Here's a little about why you might want to hire me.",
+    "I’m a product designer, and I want to work with you.\n\n",
+    "Here's a little about why you might want to work with me.",
   ];
 
   function isSmallScreen(): boolean {

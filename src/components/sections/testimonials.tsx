@@ -7,7 +7,8 @@ import "react-responsive-carousel/lib/styles/carousel.css";
 
 const TestimonialSectionWrapper = styled.div`
   padding: 160px 0;
-  background: linear-gradient(252deg, #764ad9 38.07%, #602bd7 77.78%);
+  /* background: linear-gradient(252deg, #764ad9 38.07%, #602bd7 77.78%); */
+  background-color: #5627c9;
   overflow: hidden;
 `;
 
@@ -15,10 +16,22 @@ const Text1 = styled.h1`
   color: #fff;
   text-align: center;
   font-family: Inter;
-  font-size: ${theme.fontSizes.large};
+  font-size: ${theme.fontSizes.xlarge};
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+`;
+
+const Text2 = styled.p`
+  font-size: ${theme.fontSizes.base};
+  text-align: center;
+  font-family: Inter;
+  color: #fff;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  line-height: 32px;
 `;
 
 const CircleLeft = styled.div`
@@ -29,11 +42,11 @@ const CircleLeft = styled.div`
   border-radius: 594.376px;
   background: radial-gradient(
     96.42% 240.96% at 5.66% -22.26%,
-    #784be0 34.75%,
-    #602bd7 84.46%
+    #5e2be1 34.75%,
+    #5627c9 84.46%
   );
   position: relative;
-  top: -725px;
+  top: -625px;
   left: 120px;
 `;
 
@@ -45,8 +58,8 @@ const CircleRight = styled.div`
   border-radius: 833px;
   background: radial-gradient(
     281.53% 115.34% at 108.22% 44.48%,
-    #7549d9 21.73%,
-    #632fd9 87.48%
+    #5e2be1 21.73%,
+    #5627c9 45.48%
   );
   position: relative;
   top: -1233px;
@@ -85,7 +98,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ deviceType }) => {
   return (
     <TestimonialSectionWrapper>
       <div style={{ zIndex: 2, position: "relative" }}>
-        <Text1>Everyone I’ve worked with has good things to say...</Text1>
+        <Text2>And people love working with me.</Text2>
+        <Text1>Check out these testimonials</Text1>
         <Carousel
           infiniteLoop={true}
           showIndicators={true}
