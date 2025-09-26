@@ -12,12 +12,11 @@ const ImpactContent = styled.div`
   height: 50vh;
   padding-top: 30vh;
   width: 100%;
+  text-align: center;
 `;
 const Text = styled.h1`
   font-size: ${theme.fontSizes.large};
   align-items: baseline;
-  /* display: flex;
-  flex-direction: row; */
   gap: 3px;
   height: 78px;
 `;
@@ -42,7 +41,6 @@ const Expander = styled.svg`
 const MyImpactPanel = styled.div`
   height: 110vh;
   width: max-content;
-  /* background-color: ${theme.colors.pink_300}; */
   position: fixed;
   z-index: 3;
   display: flex;

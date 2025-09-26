@@ -148,8 +148,8 @@ const SubmitButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${theme.colors.purple_300};
-    border-color: ${theme.colors.purple_300};
+    background: #353a90;
+    border-color: #353a90;
   }
 
   &:disabled {
@@ -246,7 +246,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <ContactWrapper>
+    <ContactWrapper id="contact">
       <ContactContainer>
         <TitleContainer>
           <BGCircle />
